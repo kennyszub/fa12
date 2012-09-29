@@ -1,5 +1,5 @@
 class CreateUsers < ActiveRecord::Migration
- test test
+ test test PHOEBE TEST
   def change
     create_table :users do |t|
       t.string :name
