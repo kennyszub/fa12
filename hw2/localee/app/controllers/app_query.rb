@@ -93,8 +93,8 @@ class AppQuery
     user_locations = user.locations
     user_locations.each do |loc|
       loc.posts.each do |post|
-        @posts.append({:author_id=>user_id,
-                      :author=>user.name,
+        @posts.append({:author_id=>post.user.id,
+                      :author=>post.user.name,
                       :text=>post.text,
                       :created_at=>post.created_at,
                       :location=>{:id=>loc.id,
