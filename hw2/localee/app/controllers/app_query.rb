@@ -103,8 +103,8 @@ class AppQuery
       lat = x.latitude
       lon = x.longitude
       if @locations.length < 50
-        if lat >= swlat and lat <= nelat
-          if lon >= swlng and lon <= nelng
+        if lat >= swlat.to_f and lat <= nelat.to_f
+          if lon >= swlng.to_f and lon <= nelng.to_f
             follows = User.find(user_id).locations.exists?(x.id)
             @locations.append({:id=>x.id, :name=>x.name, :latitude=>lat, :longitude=>lon, :follows=>follows})
           end
@@ -154,6 +154,8 @@ class AppQuery
   #       we may call it multiple times to test your schema/models.
   #       Your schema/models/code should prevent corruption of the database.
   def unfollow_location(user_id, location_id)
+    user_var = User.find(user_id)
+    user_var.locations.delete(Location.find(location_id))
   end
 
   # Purpose: The current user creates a post to a given location

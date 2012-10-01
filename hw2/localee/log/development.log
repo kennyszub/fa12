@@ -989,3 +989,1697 @@ Connecting to database specified by database.yml
 Connecting to database specified by database.yml
 Connecting to database specified by database.yml
 Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (43.8ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("schema_migrations")[0m
+  [1m[35m (9.4ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateUsers (20120905195452)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "email" varchar(255), "password_digest" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120905195452')
+  [1m[36m (13.9ms)[0m  [1mcommit transaction[0m
+Migrating to CreateLocations (20120929012028)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "locations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "latitude" float, "longitude" float, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120929012028')
+  [1m[36m (23.4ms)[0m  [1mcommit transaction[0m
+Migrating to CreatePosts (20120929012041)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "body" text, "user_id" integer, "location_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120929012041')
+  [1m[36m (34.4ms)[0m  [1mcommit transaction[0m
+Migrating to LocationsUsers (20121001033249)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "locations_users" ("location_id" integer, "user_id" integer) [0m
+  [1m[35m (6.9ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20121001033249')
+  [1m[36m (20.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.5ms)[0m  select sqlite_version(*)
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("locations")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("locations_users")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("posts")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("users")[0m
+Connecting to database specified by database.yml
+
+
+Started GET "/logout" for 127.0.0.1 at 2012-09-30 21:53:54 -0700
+Processing by SessionsController#destroy as HTML
+Redirected to http://localhost:3000/
+Completed 302 Found in 0ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-09-30 21:53:55 -0700
+Processing by HomeController#index as HTML
+  Rendered home/index.html.haml within layouts/application (1.6ms)
+  Rendered application/_header_guest.html.haml (12.6ms)
+  Rendered application/_header.html.haml (14.3ms)
+Completed 200 OK in 159ms (Views: 158.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/signup" for 127.0.0.1 at 2012-09-30 21:53:57 -0700
+Processing by UsersController#new as HTML
+  Rendered users/new.html.haml within layouts/application (536.9ms)
+  Rendered application/_header_guest.html.haml (1.3ms)
+  Rendered application/_header.html.haml (2.3ms)
+Completed 200 OK in 550ms (Views: 542.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2012-09-30 21:54:16 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"rzoncQg4qOZjpZMAuoR43+diBtKsxds96c4W6nG/exI=", "user"=>{"name"=>"Ken", "email"=>"fake@fake.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create Account"}
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'fake@fake.com' LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (4.8ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Mon, 01 Oct 2012 04:54:17 UTC +00:00], ["email", "fake@fake.com"], ["name", "Ken"], ["password_digest", "$2a$10$kuGiWOdy/1vWChQ4TD5UKu9xDK9RjT49qjVX44L8kEoqI64rEL9mG"], ["updated_at", Mon, 01 Oct 2012 04:54:17 UTC +00:00]]
+  [1m[35m (50.8ms)[0m  commit transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 332ms (ActiveRecord: 55.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-09-30 21:54:17 -0700
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Redirected to http://localhost:3000/dashboard
+Completed 302 Found in 10ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/dashboard" for 127.0.0.1 at 2012-09-30 21:54:17 -0700
+Processing by AppController#dashboard as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered home/dashboard.html.haml within layouts/application (4.8ms)
+  Rendered application/_header_user.html.haml (4.8ms)
+  Rendered application/_header.html.haml (5.7ms)
+Completed 200 OK in 20ms (Views: 17.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2012-09-30 21:54:44 -0700
+Processing by AppController#locations_index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered locations/index.html.haml within layouts/application (17.8ms)
+  Rendered application/_header_user.html.haml (0.6ms)
+  Rendered application/_header.html.haml (3.8ms)
+Completed 200 OK in 26ms (Views: 24.0ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 21:54:45 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.889133072107185", "nelng"=>"-122.23341779345702", "swlat"=>"37.86203303546808", "swlng"=>"-122.28491620654296"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 200 OK in 31ms (Views: 0.2ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/locations" for 127.0.0.1 at 2012-09-30 21:55:00 -0700
+Processing by AppController#locations_create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"rzoncQg4qOZjpZMAuoR43+diBtKsxds96c4W6nG/exI=", "location"=>{"name"=>"Panoramic Hill", "latitude"=>"37.86616643529826", "longitude"=>"-122.23298864001464"}, "commit"=>"Create Location"}
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.9ms)[0m  [1mINSERT INTO "locations" ("created_at", "latitude", "longitude", "name", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Mon, 01 Oct 2012 04:55:00 UTC +00:00], ["latitude", 37.86616643529826], ["longitude", -122.23298864001464], ["name", "Panoramic Hill"], ["updated_at", Mon, 01 Oct 2012 04:55:00 UTC +00:00]]
+  [1m[35m (23.6ms)[0m  commit transaction
+Redirected to http://localhost:3000/locations
+Completed 302 Found in 57ms (ActiveRecord: 24.6ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2012-09-30 21:55:00 -0700
+Processing by AppController#locations_index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered locations/index.html.haml within layouts/application (19.0ms)
+  Rendered application/_header_user.html.haml (0.9ms)
+  Rendered application/_header.html.haml (3.5ms)
+Completed 200 OK in 43ms (Views: 40.8ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 21:55:02 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.889133072107185", "nelng"=>"-122.23341779345702", "swlat"=>"37.86203303546808", "swlng"=>"-122.28491620654296"}
+  [1m[35mUser Load (8.9ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.3ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 12ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.6ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (7.8ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (24.3ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 21:55:06 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.8867622169235", "nelng"=>"-122.23358945483398", "swlat"=>"37.85966130794493", "swlng"=>"-122.28508786791991"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 7ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.7ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (22.4ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 21:55:09 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.90098620289902", "nelng"=>"-122.22749547595214", "swlat"=>"37.87389052823217", "swlng"=>"-122.27899388903808"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 2ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (13.0ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (28.9ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 21:55:09 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.90132483573362", "nelng"=>"-122.22792462939452", "swlat"=>"37.874229285701304", "swlng"=>"-122.27942304248046"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.3ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 7ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (5.8ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.1ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (14.5ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 21:55:11 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.89577106048983", "nelng"=>"-122.2294695817871", "swlat"=>"37.868673466498755", "swlng"=>"-122.28096799487304"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (4.9ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 7ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (23.2ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 21:55:11 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.891842527411804", "nelng"=>"-122.22406224841308", "swlat"=>"37.86474348775456", "swlng"=>"-122.27556066149901"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 2ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (16.1ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 21:55:12 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.89204573254001", "nelng"=>"-122.22406224841308", "swlat"=>"37.86494676765738", "swlng"=>"-122.27556066149901"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.3ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 2ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.7ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.9ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (15.3ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 21:55:13 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.88310417632251", "nelng"=>"-122.21393422717284", "swlat"=>"37.856001921484754", "swlng"=>"-122.26543264025878"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.5ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 3ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (6.3ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (6.6ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (25.9ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 21:55:14 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.877481278146426", "nelng"=>"-122.21204595202636", "swlat"=>"37.85037695475842", "swlng"=>"-122.2635443651123"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 2ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.4ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (20.1ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 21:55:15 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.87632954724112", "nelng"=>"-122.2063811265869", "swlat"=>"37.849224800186896", "swlng"=>"-122.25787953967284"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 2ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.1ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.3ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (14.1ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 21:55:16 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.87402603140714", "nelng"=>"-122.20432119006347", "swlat"=>"37.84692043703345", "swlng"=>"-122.2558196031494"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 2ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.8ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.3ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (14.1ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 21:55:17 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.87368727300333", "nelng"=>"-122.20646695727538", "swlat"=>"37.846581554025356", "swlng"=>"-122.25796537036132"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.1ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 6ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.7ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (13.8ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 21:55:19 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.882720297329676", "nelng"=>"-122.20646695727538", "swlat"=>"37.85561790126231", "swlng"=>"-122.25796537036132"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 2ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.7ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.1ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 21:55:21 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.87368727300333", "nelng"=>"-122.20646695727538", "swlat"=>"37.846581554025356", "swlng"=>"-122.25796537036132"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 10ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (5.0ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.3ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (15.1ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 21:55:23 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.87300975152265", "nelng"=>"-122.20792607897948", "swlat"=>"37.8459037833371", "swlng"=>"-122.25942449206542"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 2ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.4ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (19.9ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 21:55:28 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.86752159789123", "nelng"=>"-122.21650914782714", "swlat"=>"37.840413611179855", "swlng"=>"-122.26800756091308"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.3ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 7ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (8.6ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.5ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (26.5ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 21:55:29 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.861897510237974", "nelng"=>"-122.22423390979003", "swlat"=>"37.8347874552628", "swlng"=>"-122.27573232287597"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 118ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.4ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.1ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (24.5ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 21:55:30 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.87395827985137", "nelng"=>"-122.20672444934081", "swlat"=>"37.84685266055681", "swlng"=>"-122.25822286242675"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.3ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 9ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.8ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (31.2ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 21:55:31 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.87463579260882", "nelng"=>"-122.20672444934081", "swlat"=>"37.84753042252391", "swlng"=>"-122.25822286242675"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (4.4ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 7ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.7ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (25.3ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 21:55:31 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.876397296616936", "nelng"=>"-122.20672444934081", "swlat"=>"37.84929257448414", "swlng"=>"-122.25822286242675"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 7ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.9ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (14.0ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 21:55:32 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.88032665376731", "nelng"=>"-122.20432119006347", "swlat"=>"37.85322337710268", "swlng"=>"-122.2558196031494"}
+  [1m[35mUser Load (0.7ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 3ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.7ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.1ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (14.3ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2012-09-30 21:55:37 -0700
+Processing by AppController#locations_index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered locations/index.html.haml within layouts/application (14.0ms)
+  Rendered application/_header_user.html.haml (1.2ms)
+  Rendered application/_header.html.haml (2.1ms)
+Completed 200 OK in 36ms (Views: 31.7ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 21:55:38 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.889133072107185", "nelng"=>"-122.23341779345702", "swlat"=>"37.86203303546808", "swlng"=>"-122.28491620654296"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mLocation Load (0.0ms)[0m  SELECT "locations".* FROM "locations" ORDER BY latitude
+Completed 500 Internal Server Error in 2ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (15.2ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (36.0ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 21:55:41 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.876871540497994", "nelng"=>"-122.21762494677733", "swlat"=>"37.84976699281557", "swlng"=>"-122.26912335986327"}
+  [1m[36mUser Load (3.9ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mLocation Load (0.2ms)[0m  SELECT "locations".* FROM "locations" ORDER BY latitude
+Completed 500 Internal Server Error in 7ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.7ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (25.0ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 21:55:42 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.87511004783054", "nelng"=>"-122.21324758166503", "swlat"=>"37.8480048521933", "swlng"=>"-122.26474599475097"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mLocation Load (0.2ms)[0m  SELECT "locations".* FROM "locations" ORDER BY latitude
+Completed 500 Internal Server Error in 8ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.7ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.8ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (18.7ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 21:55:48 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.9124988451427", "nelng"=>"-122.11050824755858", "swlat"=>"37.80407328380602", "swlng"=>"-122.31650189990233"}
+  [1m[36mUser Load (4.9ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mLocation Load (0.4ms)[0m  SELECT "locations".* FROM "locations" ORDER BY latitude
+Completed 500 Internal Server Error in 9ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.5ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (25.8ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 21:55:49 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.9124988451427", "nelng"=>"-122.11050824755858", "swlat"=>"37.80407328380602", "swlng"=>"-122.31650189990233"}
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mLocation Load (0.2ms)[0m  SELECT "locations".* FROM "locations" ORDER BY latitude
+Completed 500 Internal Server Error in 3ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.8ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 21:55:50 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"38.104020822874446", "nelng"=>"-121.79018811816405", "swlat"=>"37.67049123227739", "swlng"=>"-122.61416272753905"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mLocation Load (0.2ms)[0m  SELECT "locations".* FROM "locations" ORDER BY latitude
+Completed 500 Internal Server Error in 2ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.6ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (19.0ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 21:55:50 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"38.104020822874446", "nelng"=>"-121.79018811816405", "swlat"=>"37.67049123227739", "swlng"=>"-122.61416272753905"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mLocation Load (0.2ms)[0m  SELECT "locations".* FROM "locations" ORDER BY latitude
+Completed 500 Internal Server Error in 2ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.4ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (89.5ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 21:55:51 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"38.35321991563669", "nelng"=>"-121.36309461230468", "swlat"=>"37.48655886438348", "swlng"=>"-123.01104383105468"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mLocation Load (0.2ms)[0m  SELECT "locations".* FROM "locations" ORDER BY latitude
+Completed 500 Internal Server Error in 2ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.5ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.5ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.1ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 21:55:52 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"38.849052377116145", "nelng"=>"-120.50890760058593", "swlat"=>"37.11733299276032", "swlng"=>"-123.80480603808593"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mLocation Load (0.2ms)[0m  SELECT "locations".* FROM "locations" ORDER BY latitude
+Completed 500 Internal Server Error in 2ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.6ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 21:55:53 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"39.83040872422042", "nelng"=>"-118.80053357714843", "swlat"=>"36.37345966266108", "swlng"=>"-125.39233045214843"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mLocation Load (0.2ms)[0m  SELECT "locations".* FROM "locations" ORDER BY latitude
+Completed 500 Internal Server Error in 2ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.7ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.8ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 21:55:53 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"41.751578975521824", "nelng"=>"-115.38378553027343", "swlat"=>"34.86422803813767", "swlng"=>"-128.56737928027343"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mLocation Load (0.2ms)[0m  SELECT "locations".* FROM "locations" ORDER BY latitude
+Completed 500 Internal Server Error in 2ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (5.3ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (11.0ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 21:55:55 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.86806365594901", "nelng"=>"-122.163894935791", "swlat"=>"37.813838114607904", "swlng"=>"-122.26689176196288"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mLocation Load (0.2ms)[0m  SELECT "locations".* FROM "locations" ORDER BY latitude
+Completed 500 Internal Server Error in 2ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (9.4ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (24.6ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 21:55:56 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.84448044461426", "nelng"=>"-122.20393495196532", "swlat"=>"37.830923461101676", "swlng"=>"-122.22968415850829"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mLocation Load (0.2ms)[0m  SELECT "locations".* FROM "locations" ORDER BY latitude
+Completed 500 Internal Server Error in 3ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (5.4ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.3ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (16.9ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 21:55:58 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.83895627462289", "nelng"=>"-122.21045808428954", "swlat"=>"37.82539827581417", "swlng"=>"-122.23620729083251"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mLocation Load (0.2ms)[0m  SELECT "locations".* FROM "locations" ORDER BY latitude
+Completed 500 Internal Server Error in 2ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.6ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (18.3ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 21:55:59 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.84573433969101", "nelng"=>"-122.19758348101806", "swlat"=>"37.8186183421489", "swlng"=>"-122.249081894104"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mLocation Load (0.2ms)[0m  SELECT "locations".* FROM "locations" ORDER BY latitude
+Completed 500 Internal Server Error in 2ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.0ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 21:56:01 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.85928860096677", "nelng"=>"-122.17183427447509", "swlat"=>"37.80505660648522", "swlng"=>"-122.27483110064696"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mLocation Load (0.2ms)[0m  SELECT "locations".* FROM "locations" ORDER BY latitude
+Completed 500 Internal Server Error in 2ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.4ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.0ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 21:56:02 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.88638964702556", "nelng"=>"-122.12033586138915", "swlat"=>"37.77792566288386", "swlng"=>"-122.3263295137329"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mLocation Load (0.2ms)[0m  SELECT "locations".* FROM "locations" ORDER BY latitude
+Completed 500 Internal Server Error in 2ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.6ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (10.6ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 22:00:00 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.92512681878485", "nelng"=>"-122.0956166231079", "swlat"=>"37.81671984911697", "swlng"=>"-122.30161027545165"}
+  [1m[36mUser Load (4.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mLocation Load (0.2ms)[0m  SELECT "locations".* FROM "locations" ORDER BY latitude
+Completed 500 Internal Server Error in 146ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.5ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.4ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (32.5ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 22:00:01 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.88286707482738", "nelng"=>"-122.1120961152954", "swlat"=>"37.77439790852773", "swlng"=>"-122.31808976763915"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mLocation Load (0.2ms)[0m  SELECT "locations".* FROM "locations" ORDER BY latitude
+Completed 500 Internal Server Error in 2ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.7ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2012-09-30 22:00:21 -0700
+Processing by AppController#locations_index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered locations/index.html.haml within layouts/application (32.1ms)
+  Rendered application/_header_user.html.haml (9.7ms)
+  Rendered application/_header.html.haml (11.3ms)
+Completed 200 OK in 61ms (Views: 58.3ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 22:00:22 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.889133072107185", "nelng"=>"-122.23341779345702", "swlat"=>"37.86203303546808", "swlng"=>"-122.28491620654296"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 14ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (11.1ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (8.8ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (28.9ms)
+
+
+Started POST "/locations" for 127.0.0.1 at 2012-09-30 22:00:36 -0700
+Processing by AppController#locations_create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"rzoncQg4qOZjpZMAuoR43+diBtKsxds96c4W6nG/exI=", "location"=>{"name"=>"claremont", "latitude"=>"37.86338827407185", "longitude"=>"-122.24345998400878"}, "commit"=>"Create Location"}
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (6.6ms)[0m  [1mINSERT INTO "locations" ("created_at", "latitude", "longitude", "name", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Mon, 01 Oct 2012 05:00:36 UTC +00:00], ["latitude", 37.86338827407185], ["longitude", -122.24345998400878], ["name", "claremont"], ["updated_at", Mon, 01 Oct 2012 05:00:36 UTC +00:00]]
+  [1m[35m (19.8ms)[0m  commit transaction
+Redirected to http://localhost:3000/locations
+Completed 302 Found in 32ms (ActiveRecord: 26.5ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2012-09-30 22:00:36 -0700
+Processing by AppController#locations_index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered locations/index.html.haml within layouts/application (28.7ms)
+  Rendered application/_header_user.html.haml (2.6ms)
+  Rendered application/_header.html.haml (3.8ms)
+Completed 200 OK in 43ms (Views: 41.7ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 22:00:37 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.889133072107185", "nelng"=>"-122.23341779345702", "swlat"=>"37.86203303546808", "swlng"=>"-122.28491620654296"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.3ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 4ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.5ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.6ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (21.5ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 22:00:41 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.89956392797867", "nelng"=>"-122.19333486193847", "swlat"=>"37.84536156230048", "swlng"=>"-122.29633168811034"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.1ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 3ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.1ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.1ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 22:00:43 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.90295025165039", "nelng"=>"-122.20002965563964", "swlat"=>"37.848750378365125", "swlng"=>"-122.30302648181151"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.5ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 15ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.4ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.7ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (39.3ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 22:00:47 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.8960419860775", "nelng"=>"-122.22955541247558", "swlat"=>"37.84183702839006", "swlng"=>"-122.33255223864745"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.4ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 7ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.5ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.1ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (21.9ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 22:00:50 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.89401001986301", "nelng"=>"-122.20792607897948", "swlat"=>"37.839803566822525", "swlng"=>"-122.31092290515136"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.1ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 2ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (6.3ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (21.0ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 22:00:51 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.88696543607379", "nelng"=>"-122.21324758166503", "swlat"=>"37.832753799351536", "swlng"=>"-122.3162444078369"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 3ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.4ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (12.3ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 22:00:53 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.87409378290082", "nelng"=>"-122.19659642810058", "swlat"=>"37.81987267682918", "swlng"=>"-122.29959325427245"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 3ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.1ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (15.1ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 22:00:54 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.86257513390091", "nelng"=>"-122.19899968737792", "swlat"=>"37.80834555617343", "swlng"=>"-122.3019965135498"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 3ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (13.8ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 22:00:55 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.86027118802675", "nelng"=>"-122.20020131701659", "swlat"=>"37.80603991607249", "swlng"=>"-122.30319814318847"}
+  [1m[35mUser Load (1.9ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 5ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (12.9ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.3ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (21.8ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 22:00:55 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.86013565955594", "nelng"=>"-122.19831304187011", "swlat"=>"37.80590428794238", "swlng"=>"-122.30130986804198"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.3ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 7ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (5.3ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.7ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (20.8ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 22:00:56 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.852545667464334", "nelng"=>"-122.18372182482909", "swlat"=>"37.79830871512166", "swlng"=>"-122.28671865100097"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 2ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.2ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 22:00:59 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.87016409326231", "nelng"=>"-122.16226415270995", "swlat"=>"37.81594009676328", "swlng"=>"-122.26526097888183"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 2ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.6ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (21.8ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 22:01:02 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.88141057747147", "nelng"=>"-122.21668080920409", "swlat"=>"37.8271948538444", "swlng"=>"-122.31967763537597"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 3ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (6.8ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (7.1ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (25.4ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 22:01:04 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.90647186298262", "nelng"=>"-122.217024131958", "swlat"=>"37.8522745818654", "swlng"=>"-122.32002095812987"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 2ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.3ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.1ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (28.6ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 22:01:06 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.90579464312309", "nelng"=>"-122.21290425891112", "swlat"=>"37.85159686350572", "swlng"=>"-122.315901085083"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 3ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.8ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 22:01:07 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.909045241606", "nelng"=>"-122.20620946520995", "swlat"=>"37.854849854816585", "swlng"=>"-122.30920629138183"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.5ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 7ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.3ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.3ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (23.6ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 22:01:08 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.90931611833073", "nelng"=>"-122.20655278796386", "swlat"=>"37.85512093094678", "swlng"=>"-122.30954961413573"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (1.2ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 3ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.2ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 22:01:12 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.90918068009345", "nelng"=>"-122.22955541247558", "swlat"=>"37.854985393006714", "swlng"=>"-122.33255223864745"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.3ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 9ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (10.2ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.3ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (34.3ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 22:01:13 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.90918068009345", "nelng"=>"-122.22955541247558", "swlat"=>"37.854985393006714", "swlng"=>"-122.33255223864745"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.0ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 2ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.7ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 22:01:14 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.906742749181895", "nelng"=>"-122.22646550769042", "swlat"=>"37.85254566746558", "swlng"=>"-122.3294623338623"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 2ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.0ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 22:01:17 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.89861572943152", "nelng"=>"-122.2228606187744", "swlat"=>"37.844412665896705", "swlng"=>"-122.32585744494628"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 3ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (11.2ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (17.0ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (35.9ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 22:01:19 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.89360361989126", "nelng"=>"-122.21101598376464", "swlat"=>"37.83939686778337", "swlng"=>"-122.31401280993651"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 10ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.1ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (18.7ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 22:01:20 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.89455188300642", "nelng"=>"-122.2031195604248", "swlat"=>"37.84034582872411", "swlng"=>"-122.30611638659667"}
+  [1m[35mUser Load (4.6ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 8ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (27.8ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 22:01:21 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.89455188300642", "nelng"=>"-122.20277623767089", "swlat"=>"37.84034582872411", "swlng"=>"-122.30577306384276"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 2ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.1ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 22:01:22 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.89346815273485", "nelng"=>"-122.19608144396972", "swlat"=>"37.8392613009381", "swlng"=>"-122.29907827014159"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 2ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (5.7ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (18.0ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 22:01:24 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.8990221017344", "nelng"=>"-122.18852834338378", "swlat"=>"37.8448193372803", "swlng"=>"-122.29152516955565"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.3ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 8ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (6.0ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (25.4ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 22:01:25 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.90037665987237", "nelng"=>"-122.18509511584472", "swlat"=>"37.84617489236166", "swlng"=>"-122.28809194201659"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.3ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 3ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (11.0ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 22:01:28 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.90146028843341", "nelng"=>"-122.16192082995605", "swlat"=>"37.847259318486024", "swlng"=>"-122.26491765612792"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 3ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (33.9ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 22:01:30 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.89807389620494", "nelng"=>"-122.13085012072753", "swlat"=>"37.84387043389758", "swlng"=>"-122.2338469468994"}
+  [1m[35mUser Load (1.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.1ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 4ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.9ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 22:01:42 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.894822813082534", "nelng"=>"-122.21032933825683", "swlat"=>"37.84061695818004", "swlng"=>"-122.3133261644287"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 500 Internal Server Error in 5ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.8ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2012-09-30 22:01:59 -0700
+Processing by AppController#locations_index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered locations/index.html.haml within layouts/application (4.0ms)
+  Rendered application/_header_user.html.haml (2.6ms)
+  Rendered application/_header.html.haml (3.4ms)
+Completed 200 OK in 22ms (Views: 20.9ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 22:02:00 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.889133072107185", "nelng"=>"-122.23341779345702", "swlat"=>"37.86203303546808", "swlng"=>"-122.28491620654296"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mLocation Load (0.2ms)[0m  SELECT "locations".* FROM "locations" ORDER BY latitude
+Completed 500 Internal Server Error in 10ms
+
+ArgumentError (comparison of Float with String failed):
+  app/controllers/app_query.rb:106:in `>='
+  app/controllers/app_query.rb:106:in `block in get_nearby_locations'
+  app/controllers/app_query.rb:102:in `get_nearby_locations'
+  app/controllers/app_controller.rb:22:in `nearby_locations_index'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.3ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (29.0ms)
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (18.2ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("schema_migrations")[0m
+  [1m[35m (15.8ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateUsers (20120905195452)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "email" varchar(255), "password_digest" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120905195452')
+  [1m[36m (10.9ms)[0m  [1mcommit transaction[0m
+Migrating to CreateLocations (20120929012028)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "locations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "latitude" float, "longitude" float, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120929012028')
+  [1m[36m (22.8ms)[0m  [1mcommit transaction[0m
+Migrating to CreatePosts (20120929012041)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "body" text, "user_id" integer, "location_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120929012041')
+  [1m[36m (22.5ms)[0m  [1mcommit transaction[0m
+Migrating to LocationsUsers (20121001033249)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "locations_users" ("location_id" integer, "user_id" integer) [0m
+  [1m[35m (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20121001033249')
+  [1m[36m (12.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.4ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("locations")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("locations_users")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("posts")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("users")[0m
+Connecting to database specified by database.yml
+
+
+Started GET "/logout" for 127.0.0.1 at 2012-09-30 22:15:43 -0700
+Processing by SessionsController#destroy as HTML
+Redirected to http://localhost:3000/
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-09-30 22:15:43 -0700
+Processing by HomeController#index as HTML
+  Rendered home/index.html.haml within layouts/application (2.9ms)
+  Rendered application/_header_guest.html.haml (6.2ms)
+  Rendered application/_header.html.haml (10.5ms)
+Completed 200 OK in 138ms (Views: 136.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/signup" for 127.0.0.1 at 2012-09-30 22:15:47 -0700
+Processing by UsersController#new as HTML
+  Rendered users/new.html.haml within layouts/application (627.6ms)
+  Rendered application/_header_guest.html.haml (1.2ms)
+  Rendered application/_header.html.haml (2.3ms)
+Completed 200 OK in 649ms (Views: 640.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2012-09-30 22:16:00 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"rzoncQg4qOZjpZMAuoR43+diBtKsxds96c4W6nG/exI=", "user"=>{"name"=>"Ken", "email"=>"sdaf", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create Account"}
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'sdaf' LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (4.0ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Mon, 01 Oct 2012 05:16:01 UTC +00:00], ["email", "sdaf"], ["name", "Ken"], ["password_digest", "$2a$10$DPuIDJIJZlemC.UzULOuQOj2whcXCe5ZkflZRsRRbQ9/XX0fvP9IS"], ["updated_at", Mon, 01 Oct 2012 05:16:01 UTC +00:00]]
+  [1m[35m (17.1ms)[0m  commit transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 340ms (ActiveRecord: 21.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-09-30 22:16:01 -0700
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Redirected to http://localhost:3000/dashboard
+Completed 302 Found in 10ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/dashboard" for 127.0.0.1 at 2012-09-30 22:16:01 -0700
+Processing by AppController#dashboard as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered home/dashboard.html.haml within layouts/application (1.3ms)
+  Rendered application/_header_user.html.haml (7.9ms)
+  Rendered application/_header.html.haml (9.0ms)
+Completed 200 OK in 20ms (Views: 17.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2012-09-30 22:16:03 -0700
+Processing by AppController#locations_index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered locations/index.html.haml within layouts/application (19.1ms)
+  Rendered application/_header_user.html.haml (7.0ms)
+  Rendered application/_header.html.haml (8.2ms)
+Completed 200 OK in 49ms (Views: 46.5ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 22:16:04 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.889133072107185", "nelng"=>"-122.23341779345702", "swlat"=>"37.86203303546808", "swlng"=>"-122.28491620654296"}
+  [1m[35mUser Load (0.7ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.1ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 200 OK in 40ms (Views: 0.3ms | ActiveRecord: 1.4ms)
+
+
+Started POST "/locations" for 127.0.0.1 at 2012-09-30 22:16:31 -0700
+Processing by AppController#locations_create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"rzoncQg4qOZjpZMAuoR43+diBtKsxds96c4W6nG/exI=", "location"=>{"name"=>"Uc Berks", "latitude"=>"37.870977149694234", "longitude"=>"-122.25993947619628"}, "commit"=>"Create Location"}
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (4.2ms)[0m  [1mINSERT INTO "locations" ("created_at", "latitude", "longitude", "name", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Mon, 01 Oct 2012 05:16:31 UTC +00:00], ["latitude", 37.870977149694234], ["longitude", -122.25993947619628], ["name", "Uc Berks"], ["updated_at", Mon, 01 Oct 2012 05:16:31 UTC +00:00]]
+  [1m[35m (127.4ms)[0m  commit transaction
+Redirected to http://localhost:3000/locations
+Completed 302 Found in 162ms (ActiveRecord: 131.7ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2012-09-30 22:16:31 -0700
+Processing by AppController#locations_index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered locations/index.html.haml within layouts/application (37.0ms)
+  Rendered application/_header_user.html.haml (20.3ms)
+  Rendered application/_header.html.haml (22.6ms)
+Completed 200 OK in 84ms (Views: 82.0ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 22:16:33 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.889133072107185", "nelng"=>"-122.23341779345702", "swlat"=>"37.86203303546808", "swlng"=>"-122.28491620654296"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.1ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "locations" INNER JOIN "locations_users" ON "locations"."id" = "locations_users"."location_id" WHERE "locations_users"."user_id" = 1 AND "locations"."id" = 1 LIMIT 1[0m
+Completed 200 OK in 156ms (Views: 0.4ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/locations/1/follow" for 127.0.0.1 at 2012-09-30 22:16:46 -0700
+Processing by AppController#location_follow as HTML
+  Parameters: {"authenticity_token"=>"rzoncQg4qOZjpZMAuoR43+diBtKsxds96c4W6nG/exI=", "id"=>"1"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mLocation Load (0.2ms)[0m  SELECT "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "locations_users" ("user_id", "location_id") VALUES (1, 1)
+  [1m[36m (37.6ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/locations
+Completed 302 Found in 43ms (ActiveRecord: 38.4ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2012-09-30 22:16:46 -0700
+Processing by AppController#locations_index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered locations/index.html.haml within layouts/application (6.3ms)
+  Rendered application/_header_user.html.haml (1.6ms)
+  Rendered application/_header.html.haml (13.6ms)
+Completed 200 OK in 31ms (Views: 30.4ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 22:16:47 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.889133072107185", "nelng"=>"-122.23341779345702", "swlat"=>"37.86203303546808", "swlng"=>"-122.28491620654296"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mLocation Load (0.0ms)[0m  SELECT "locations".* FROM "locations" ORDER BY latitude
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mLocation Exists (0.5ms)[0m  SELECT 1 AS one FROM "locations" INNER JOIN "locations_users" ON "locations"."id" = "locations_users"."location_id" WHERE "locations_users"."user_id" = 1 AND "locations"."id" = 1 LIMIT 1
+Completed 200 OK in 25ms (Views: 1.0ms | ActiveRecord: 0.7ms)

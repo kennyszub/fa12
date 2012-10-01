@@ -13,11 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20121001033249) do
 
-  create_table "following", :id => false, :force => true do |t|
-    t.integer "user_id"
-    t.integer "location_id"
-  end
-
   create_table "locations", :force => true do |t|
     t.string   "name"
     t.float    "latitude"
