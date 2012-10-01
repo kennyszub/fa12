@@ -99,6 +99,18 @@ class AppQuery
   # Output: None
   def get_nearby_locations(nelat, nelng, swlat, swlng, user_id)
     @locations = []
+    Location.order(:latitude).each do |x|
+      lat = x.latitude
+      lon = x.longitude
+      if @locations.length < 50
+        if lat >= swlat and lat <= nelat
+          if lon >= swlng and lon <= nelng
+            follows = User.find(user_id).locations.exists?(x.id)
+            @locations.append({:id=>x.id, :name=>x.name, :latitude=>lat, :longitude=>lon, :follows=>follows})
+          end
+        end
+      end
+    end
   end
 
   # Purpose: Create a new location

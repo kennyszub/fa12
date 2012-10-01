@@ -981,3 +981,11 @@ Migrating to LocationsUsers (20121001033249)
   [1m[35m (0.1ms)[0m  PRAGMA index_list("users")
 Connecting to database specified by database.yml
 Binary data inserted for `string` type on column `password_digest`
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
