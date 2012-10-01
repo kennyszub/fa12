@@ -61,8 +61,11 @@ class AppQuery
     @posts = []
     loc = Location.find(location_id)
     @location = {:id=>loc.id, :name=>loc.name, :latitude=>loc.latitude, :longitude=>loc.longitude}
-    loc.posts.each do |x|
-      @posts.append({:author_id=>post.user_id, :author=>User.find(post.user_id).name, :text=>post.text, :created_at=>post.timestamp, @location})
+    loc.posts.each do |post|
+      @posts.append({:author_id=>post.user_id,
+                     :author=>User.find(post.user_id).name, 
+                     :text=>post.text, 
+                     :created_at=>post.created_at, :location=>@location})
     end
   end
 

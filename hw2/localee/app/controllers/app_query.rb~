@@ -59,6 +59,14 @@ class AppQuery
   def get_posts_for_location(location_id)
     @location = {}
     @posts = []
+    loc = Location.find(location_id)
+    @location = {:id=>loc.id, :name=>loc.name, :latitude=>loc.latitude, :longitude=>loc.longitude}
+    loc.posts.each do |x|
+      @posts.append({:author_id=>post.user_id,
+                     :author=>User.find(post.user_id).name, 
+                     :text=>post.text, 
+                     :created_at=>post.created_at, :location=>@location})
+    end
   end
 
   # Purpose: Show the current user's stream of posts from all the locations the user follows

@@ -3555,3 +3555,529 @@ Served asset /application.js - 304 Not Modified (3ms)
 Started GET "/assets/application.css" for 127.0.0.1 at 2012-09-30 22:49:28 -0700
 Served asset /application.css - 304 Not Modified (10ms)
 Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.5ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (57.2ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("schema_migrations")[0m
+  [1m[35m (10.8ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateUsers (20120905195452)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (1.3ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "email" varchar(255), "password_digest" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120905195452')
+  [1m[36m (12.9ms)[0m  [1mcommit transaction[0m
+Migrating to CreateLocations (20120929012028)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "locations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "latitude" float, "longitude" float, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120929012028')
+  [1m[36m (18.6ms)[0m  [1mcommit transaction[0m
+Migrating to CreatePosts (20120929012041)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "text" text, "user_id" integer, "location_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120929012041')
+  [1m[36m (13.0ms)[0m  [1mcommit transaction[0m
+Migrating to LocationsUsers (20121001033249)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "locations_users" ("location_id" integer, "user_id" integer) [0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20121001033249')
+  [1m[36m (14.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.5ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("locations")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("locations_users")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("posts")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("users")[0m
+Connecting to database specified by database.yml
+
+
+Started GET "/logout" for 127.0.0.1 at 2012-09-30 23:10:00 -0700
+Processing by SessionsController#destroy as HTML
+Redirected to http://localhost:3000/
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-09-30 23:10:00 -0700
+Processing by HomeController#index as HTML
+  Rendered home/index.html.haml within layouts/application (2.0ms)
+  Rendered application/_header_guest.html.haml (2.0ms)
+  Rendered application/_header.html.haml (10.5ms)
+Completed 200 OK in 162ms (Views: 160.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css" for 127.0.0.1 at 2012-09-30 23:10:01 -0700
+Served asset /application.css - 304 Not Modified (18ms)
+
+
+Started GET "/assets/application.js" for 127.0.0.1 at 2012-09-30 23:10:01 -0700
+Served asset /application.js - 304 Not Modified (33ms)
+
+
+Started GET "/signup" for 127.0.0.1 at 2012-09-30 23:10:03 -0700
+Processing by UsersController#new as HTML
+Completed 500 Internal Server Error in 10ms
+
+SyntaxError (/home/ubuntu/fall12/fa12/hw2/localee/app/controllers/app_query.rb:65: syntax error, unexpected '}', expecting tASSOC
+...at=>post.created_at, @location})
+...                               ^
+/home/ubuntu/fall12/fa12/hw2/localee/app/controllers/app_query.rb:308: syntax error, unexpected $end, expecting keyword_end):
+  app/controllers/users_controller.rb:5:in `create_app_query'
+
+
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.6ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.4ms)
+  Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (22.4ms)
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (47.0ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("schema_migrations")[0m
+  [1m[35m (9.1ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateUsers (20120905195452)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (1.6ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "email" varchar(255), "password_digest" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120905195452')
+  [1m[36m (12.6ms)[0m  [1mcommit transaction[0m
+Migrating to CreateLocations (20120929012028)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "locations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "latitude" float, "longitude" float, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120929012028')
+  [1m[36m (12.4ms)[0m  [1mcommit transaction[0m
+Migrating to CreatePosts (20120929012041)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "text" text, "user_id" integer, "location_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120929012041')
+  [1m[36m (12.8ms)[0m  [1mcommit transaction[0m
+Migrating to LocationsUsers (20121001033249)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "locations_users" ("location_id" integer, "user_id" integer) [0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20121001033249')
+  [1m[36m (21.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.5ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("locations")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("locations_users")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("posts")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("users")[0m
+Connecting to database specified by database.yml
+
+
+Started GET "/logout" for 127.0.0.1 at 2012-09-30 23:13:54 -0700
+Processing by SessionsController#destroy as HTML
+Redirected to http://localhost:3000/
+Completed 302 Found in 4ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-09-30 23:13:54 -0700
+Processing by HomeController#index as HTML
+  Rendered home/index.html.haml within layouts/application (1.8ms)
+  Rendered application/_header_guest.html.haml (4.0ms)
+  Rendered application/_header.html.haml (9.0ms)
+Completed 200 OK in 137ms (Views: 136.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css" for 127.0.0.1 at 2012-09-30 23:13:54 -0700
+Served asset /application.css - 304 Not Modified (40ms)
+
+
+Started GET "/assets/application.js" for 127.0.0.1 at 2012-09-30 23:13:54 -0700
+Served asset /application.js - 304 Not Modified (52ms)
+
+
+Started GET "/signup" for 127.0.0.1 at 2012-09-30 23:13:56 -0700
+Processing by UsersController#new as HTML
+  Rendered users/new.html.haml within layouts/application (638.6ms)
+  Rendered application/_header_guest.html.haml (0.6ms)
+  Rendered application/_header.html.haml (2.2ms)
+Completed 200 OK in 652ms (Views: 646.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css" for 127.0.0.1 at 2012-09-30 23:13:57 -0700
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js" for 127.0.0.1 at 2012-09-30 23:13:57 -0700
+Served asset /application.js - 304 Not Modified (3ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2012-09-30 23:14:07 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"rzoncQg4qOZjpZMAuoR43+diBtKsxds96c4W6nG/exI=", "user"=>{"name"=>"Ken", "email"=>"sadf@fsad", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create Account"}
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.9ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'sadf@fsad' LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (7.0ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Mon, 01 Oct 2012 06:14:07 UTC +00:00], ["email", "sadf@fsad"], ["name", "Ken"], ["password_digest", "$2a$10$eTBlzKOBQG0188esvP0J6OfIggNbiNIh03kFAv1PUAb9qrLEhI.ry"], ["updated_at", Mon, 01 Oct 2012 06:14:07 UTC +00:00]]
+  [1m[35m (18.9ms)[0m  commit transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 281ms (ActiveRecord: 27.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-09-30 23:14:07 -0700
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Redirected to http://localhost:3000/dashboard
+Completed 302 Found in 3ms (ActiveRecord: 0.5ms)
+
+
+Started GET "/dashboard" for 127.0.0.1 at 2012-09-30 23:14:07 -0700
+Processing by AppController#dashboard as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered home/dashboard.html.haml within layouts/application (2.4ms)
+  Rendered application/_header_user.html.haml (4.9ms)
+  Rendered application/_header.html.haml (12.4ms)
+Completed 200 OK in 21ms (Views: 19.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css" for 127.0.0.1 at 2012-09-30 23:14:08 -0700
+Served asset /application.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/application.js" for 127.0.0.1 at 2012-09-30 23:14:08 -0700
+Served asset /application.js - 304 Not Modified (11ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2012-09-30 23:14:10 -0700
+Processing by AppController#locations_index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.1ms)[0m  [1mSELECT "locations".* FROM "locations" INNER JOIN "locations_users" ON "locations"."id" = "locations_users"."location_id" WHERE "locations_users"."user_id" = 1[0m
+  Rendered locations/index.html.haml within layouts/application (10.7ms)
+  Rendered application/_header_user.html.haml (1.0ms)
+  Rendered application/_header.html.haml (1.9ms)
+Completed 200 OK in 172ms (Views: 20.8ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/assets/application.css" for 127.0.0.1 at 2012-09-30 23:14:10 -0700
+Served asset /application.css - 304 Not Modified (11ms)
+
+
+Started GET "/assets/application.js" for 127.0.0.1 at 2012-09-30 23:14:10 -0700
+Served asset /application.js - 304 Not Modified (8ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 23:14:11 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.889133072107185", "nelng"=>"-122.23341779345702", "swlat"=>"37.86203303546808", "swlng"=>"-122.28491620654296"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/locations" for 127.0.0.1 at 2012-09-30 23:14:17 -0700
+Processing by AppController#locations_create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"rzoncQg4qOZjpZMAuoR43+diBtKsxds96c4W6nG/exI=", "location"=>{"name"=>"Uc Berks", "latitude"=>"37.87145142846982", "longitude"=>"-122.2569354020996"}, "commit"=>"Create Location"}
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mSQL (16.6ms)[0m  [1mINSERT INTO "locations" ("created_at", "latitude", "longitude", "name", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Mon, 01 Oct 2012 06:14:17 UTC +00:00], ["latitude", 37.87145142846982], ["longitude", -122.2569354020996], ["name", "Uc Berks"], ["updated_at", Mon, 01 Oct 2012 06:14:17 UTC +00:00]]
+  [1m[35m (28.1ms)[0m  commit transaction
+Redirected to http://localhost:3000/locations
+Completed 302 Found in 77ms (ActiveRecord: 45.0ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2012-09-30 23:14:17 -0700
+Processing by AppController#locations_index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" INNER JOIN "locations_users" ON "locations"."id" = "locations_users"."location_id" WHERE "locations_users"."user_id" = 1[0m
+  Rendered locations/index.html.haml within layouts/application (29.9ms)
+  Rendered application/_header_user.html.haml (1.4ms)
+  Rendered application/_header.html.haml (2.3ms)
+Completed 200 OK in 46ms (Views: 43.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css" for 127.0.0.1 at 2012-09-30 23:14:17 -0700
+Served asset /application.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/application.js" for 127.0.0.1 at 2012-09-30 23:14:17 -0700
+Served asset /application.js - 304 Not Modified (7ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 23:14:19 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.889133072107185", "nelng"=>"-122.23341779345702", "swlat"=>"37.86203303546808", "swlng"=>"-122.28491620654296"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.6ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "locations" INNER JOIN "locations_users" ON "locations"."id" = "locations_users"."location_id" WHERE "locations_users"."user_id" = 1 AND "locations"."id" = 1 LIMIT 1[0m
+Completed 200 OK in 5ms (Views: 0.4ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 23:14:21 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.88330740556694", "nelng"=>"-122.24612073535155", "swlat"=>"37.85620522549799", "swlng"=>"-122.29761914843749"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "locations" INNER JOIN "locations_users" ON "locations"."id" = "locations_users"."location_id" WHERE "locations_users"."user_id" = 1 AND "locations"."id" = 1 LIMIT 1[0m
+Completed 200 OK in 5ms (Views: 0.4ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 23:14:22 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.88418805914784", "nelng"=>"-122.24860982531737", "swlat"=>"37.85708620307861", "swlng"=>"-122.30010823840331"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.1ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "locations" INNER JOIN "locations_users" ON "locations"."id" = "locations_users"."location_id" WHERE "locations_users"."user_id" = 1 AND "locations"."id" = 1 LIMIT 1[0m
+Completed 200 OK in 7ms (Views: 0.6ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/locations" for 127.0.0.1 at 2012-09-30 23:14:31 -0700
+Processing by AppController#locations_create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"rzoncQg4qOZjpZMAuoR43+diBtKsxds96c4W6nG/exI=", "location"=>{"name"=>"claremont", "latitude"=>"37.85532423738866", "longitude"=>"-122.24500493640136"}, "commit"=>"Create Location"}
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "locations" ("created_at", "latitude", "longitude", "name", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Mon, 01 Oct 2012 06:14:31 UTC +00:00], ["latitude", 37.85532423738866], ["longitude", -122.24500493640136], ["name", "claremont"], ["updated_at", Mon, 01 Oct 2012 06:14:31 UTC +00:00]]
+  [1m[35m (16.5ms)[0m  commit transaction
+Redirected to http://localhost:3000/locations
+Completed 302 Found in 20ms (ActiveRecord: 17.0ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2012-09-30 23:14:31 -0700
+Processing by AppController#locations_index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.3ms)[0m  [1mSELECT "locations".* FROM "locations" INNER JOIN "locations_users" ON "locations"."id" = "locations_users"."location_id" WHERE "locations_users"."user_id" = 1[0m
+  Rendered locations/index.html.haml within layouts/application (25.9ms)
+  Rendered application/_header_user.html.haml (2.8ms)
+  Rendered application/_header.html.haml (4.9ms)
+Completed 200 OK in 113ms (Views: 106.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/application.js" for 127.0.0.1 at 2012-09-30 23:14:32 -0700
+Served asset /application.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/application.css" for 127.0.0.1 at 2012-09-30 23:14:32 -0700
+Served asset /application.css - 304 Not Modified (4ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 23:14:33 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.889133072107185", "nelng"=>"-122.23341779345702", "swlat"=>"37.86203303546808", "swlng"=>"-122.28491620654296"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "locations" INNER JOIN "locations_users" ON "locations"."id" = "locations_users"."location_id" WHERE "locations_users"."user_id" = 1 AND "locations"."id" = 1 LIMIT 1[0m
+Completed 200 OK in 6ms (Views: 0.4ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 23:14:38 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.8789039796959", "nelng"=>"-122.23213033312987", "swlat"=>"37.851800179666284", "swlng"=>"-122.28362874621581"}
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "locations" INNER JOIN "locations_users" ON "locations"."id" = "locations_users"."location_id" WHERE "locations_users"."user_id" = 1 AND "locations"."id" = 2 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "locations" INNER JOIN "locations_users" ON "locations"."id" = "locations_users"."location_id" WHERE "locations_users"."user_id" = 1 AND "locations"."id" = 1 LIMIT 1[0m
+Completed 200 OK in 7ms (Views: 0.4ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 23:14:39 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.87233222381026", "nelng"=>"-122.22938375109862", "swlat"=>"37.845226006418656", "swlng"=>"-122.28088216418456"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "locations" INNER JOIN "locations_users" ON "locations"."id" = "locations_users"."location_id" WHERE "locations_users"."user_id" = 1 AND "locations"."id" = 2 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "locations" INNER JOIN "locations_users" ON "locations"."id" = "locations_users"."location_id" WHERE "locations_users"."user_id" = 1 AND "locations"."id" = 1 LIMIT 1[0m
+Completed 200 OK in 16ms (Views: 0.5ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 23:14:40 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.87666829349389", "nelng"=>"-122.2294695817871", "swlat"=>"37.84956367104692", "swlng"=>"-122.28096799487304"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY latitude[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "locations" INNER JOIN "locations_users" ON "locations"."id" = "locations_users"."location_id" WHERE "locations_users"."user_id" = 1 AND "locations"."id" = 2 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mLocation Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "locations" INNER JOIN "locations_users" ON "locations"."id" = "locations_users"."location_id" WHERE "locations_users"."user_id" = 1 AND "locations"."id" = 1 LIMIT 1[0m
+Completed 200 OK in 10ms (Views: 0.6ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/location/2" for 127.0.0.1 at 2012-09-30 23:14:42 -0700
+Processing by AppController#location_show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mLocation Load (0.3ms)[0m  SELECT "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT 1  [["id", "2"]]
+  [1m[36mPost Load (0.1ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."location_id" = 2[0m
+  Rendered locations/show.html.haml within layouts/application (27.3ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered application/_header_user.html.haml (2.1ms)
+  Rendered application/_header.html.haml (10.6ms)
+Completed 200 OK in 85ms (Views: 49.8ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/assets/application.css" for 127.0.0.1 at 2012-09-30 23:14:42 -0700
+Served asset /application.css - 304 Not Modified (9ms)
+
+
+Started GET "/assets/application.js" for 127.0.0.1 at 2012-09-30 23:14:42 -0700
+Served asset /application.js - 304 Not Modified (11ms)
+
+
+Started POST "/posts" for 127.0.0.1 at 2012-09-30 23:14:48 -0700
+Processing by AppController#posts_create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"rzoncQg4qOZjpZMAuoR43+diBtKsxds96c4W6nG/exI=", "post"=>{"location_id"=>"2", "text"=>"i am here"}, "commit"=>"Create Post"}
+  [1m[36mUser Load (6.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (5.0ms)[0m  [1mINSERT INTO "posts" ("created_at", "location_id", "text", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Mon, 01 Oct 2012 06:14:48 UTC +00:00], ["location_id", 2], ["text", "i am here"], ["updated_at", Mon, 01 Oct 2012 06:14:48 UTC +00:00], ["user_id", 1]]
+  [1m[35m (11.9ms)[0m  commit transaction
+Redirected to http://localhost:3000/location/2
+Completed 302 Found in 32ms (ActiveRecord: 23.4ms)
+
+
+Started GET "/location/2" for 127.0.0.1 at 2012-09-30 23:14:48 -0700
+Processing by AppController#location_show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mLocation Load (3.3ms)[0m  [1mSELECT "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  [1m[35mPost Load (0.4ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."location_id" = 2
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered posts/_post.html.haml (3.7ms)
+  Rendered locations/show.html.haml within layouts/application (8.0ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered application/_header_user.html.haml (1.7ms)
+  Rendered application/_header.html.haml (6.3ms)
+Completed 200 OK in 37ms (Views: 19.6ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/assets/application.js" for 127.0.0.1 at 2012-09-30 23:14:48 -0700
+Served asset /application.js - 304 Not Modified (9ms)
+
+
+Started GET "/assets/application.css" for 127.0.0.1 at 2012-09-30 23:14:48 -0700
+Served asset /application.css - 304 Not Modified (1ms)
+
+
+Started POST "/posts" for 127.0.0.1 at 2012-09-30 23:14:56 -0700
+Processing by AppController#posts_create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"rzoncQg4qOZjpZMAuoR43+diBtKsxds96c4W6nG/exI=", "post"=>{"location_id"=>"2", "text"=>"test"}, "commit"=>"Create Post"}
+  [1m[36mUser Load (3.8ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (2.3ms)[0m  [1mINSERT INTO "posts" ("created_at", "location_id", "text", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Mon, 01 Oct 2012 06:14:56 UTC +00:00], ["location_id", 2], ["text", "test"], ["updated_at", Mon, 01 Oct 2012 06:14:56 UTC +00:00], ["user_id", 1]]
+  [1m[35m (16.1ms)[0m  commit transaction
+Redirected to http://localhost:3000/location/2
+Completed 302 Found in 25ms (ActiveRecord: 22.2ms)
+
+
+Started GET "/location/2" for 127.0.0.1 at 2012-09-30 23:14:57 -0700
+Processing by AppController#location_show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  [1m[35mPost Load (10.6ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."location_id" = 2
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered posts/_post.html.haml (1.0ms)
+  Rendered posts/_post.html.haml (0.4ms)
+  Rendered locations/show.html.haml within layouts/application (10.9ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered application/_header_user.html.haml (1.4ms)
+  Rendered application/_header.html.haml (11.4ms)
+Completed 200 OK in 41ms (Views: 25.9ms | ActiveRecord: 10.9ms)
+
+
+Started GET "/assets/application.css" for 127.0.0.1 at 2012-09-30 23:14:57 -0700
+Served asset /application.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/application.js" for 127.0.0.1 at 2012-09-30 23:14:57 -0700
+Served asset /application.js - 304 Not Modified (3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-09-30 23:14:59 -0700
+Processing by HomeController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+Redirected to http://localhost:3000/dashboard
+Completed 302 Found in 1ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/dashboard" for 127.0.0.1 at 2012-09-30 23:14:59 -0700
+Processing by AppController#dashboard as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered home/dashboard.html.haml within layouts/application (5.9ms)
+  Rendered application/_header_user.html.haml (4.0ms)
+  Rendered application/_header.html.haml (4.8ms)
+Completed 200 OK in 97ms (Views: 95.9ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/assets/application.css" for 127.0.0.1 at 2012-09-30 23:14:59 -0700
+Served asset /application.css - 304 Not Modified (14ms)
+
+
+Started GET "/assets/application.js" for 127.0.0.1 at 2012-09-30 23:14:59 -0700
+Served asset /application.js - 304 Not Modified (13ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2012-09-30 23:15:07 -0700
+Processing by AppController#locations_index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mLocation Load (0.2ms)[0m  SELECT "locations".* FROM "locations" INNER JOIN "locations_users" ON "locations"."id" = "locations_users"."location_id" WHERE "locations_users"."user_id" = 1
+  Rendered locations/index.html.haml within layouts/application (4.8ms)
+  Rendered application/_header_user.html.haml (6.8ms)
+  Rendered application/_header.html.haml (7.7ms)
+Completed 200 OK in 22ms (Views: 16.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/application.css" for 127.0.0.1 at 2012-09-30 23:15:07 -0700
+Served asset /application.css - 304 Not Modified (14ms)
+
+
+Started GET "/assets/application.js" for 127.0.0.1 at 2012-09-30 23:15:07 -0700
+Served asset /application.js - 304 Not Modified (4ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 23:15:08 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.889133072107185", "nelng"=>"-122.23341779345702", "swlat"=>"37.86203303546808", "swlng"=>"-122.28491620654296"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mLocation Load (0.4ms)[0m  SELECT "locations".* FROM "locations" ORDER BY latitude
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mLocation Exists (0.7ms)[0m  SELECT 1 AS one FROM "locations" INNER JOIN "locations_users" ON "locations"."id" = "locations_users"."location_id" WHERE "locations_users"."user_id" = 1 AND "locations"."id" = 1 LIMIT 1
+Completed 200 OK in 15ms (Views: 0.4ms | ActiveRecord: 1.3ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 23:15:12 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.877210284258815", "nelng"=>"-122.22483472460937", "swlat"=>"37.850105861184254", "swlng"=>"-122.2763331376953"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mLocation Load (0.2ms)[0m  SELECT "locations".* FROM "locations" ORDER BY latitude
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mLocation Exists (0.1ms)[0m  SELECT 1 AS one FROM "locations" INNER JOIN "locations_users" ON "locations"."id" = "locations_users"."location_id" WHERE "locations_users"."user_id" = 1 AND "locations"."id" = 2 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mLocation Exists (0.1ms)[0m  SELECT 1 AS one FROM "locations" INNER JOIN "locations_users" ON "locations"."id" = "locations_users"."location_id" WHERE "locations_users"."user_id" = 1 AND "locations"."id" = 1 LIMIT 1
+Completed 200 OK in 6ms (Views: 0.5ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/nearby_locations" for 127.0.0.1 at 2012-09-30 23:15:13 -0700
+Processing by AppController#nearby_locations_index as */*
+  Parameters: {"nelat"=>"37.86935102785638", "nelng"=>"-122.2236330949707", "swlat"=>"37.842243713976", "swlng"=>"-122.27513150805663"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mLocation Load (0.1ms)[0m  SELECT "locations".* FROM "locations" ORDER BY latitude
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mLocation Exists (0.2ms)[0m  SELECT 1 AS one FROM "locations" INNER JOIN "locations_users" ON "locations"."id" = "locations_users"."location_id" WHERE "locations_users"."user_id" = 1 AND "locations"."id" = 2 LIMIT 1
+Completed 200 OK in 5ms (Views: 0.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/location/2" for 127.0.0.1 at 2012-09-30 23:15:13 -0700
+Processing by AppController#location_show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."location_id" = 2
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered posts/_post.html.haml (0.9ms)
+  Rendered posts/_post.html.haml (0.4ms)
+  Rendered locations/show.html.haml within layouts/application (10.4ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered application/_header_user.html.haml (1.4ms)
+  Rendered application/_header.html.haml (3.2ms)
+Completed 200 OK in 40ms (Views: 25.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/application.js" for 127.0.0.1 at 2012-09-30 23:15:14 -0700
+Served asset /application.js - 304 Not Modified (8ms)
+
+
+Started GET "/assets/application.css" for 127.0.0.1 at 2012-09-30 23:15:14 -0700
+Served asset /application.css - 304 Not Modified (7ms)
