@@ -19,11 +19,11 @@ ActiveRecord::Schema.define(:version => 20120929012058) do
   end
 
   create_table "locations", :force => true do |t|
-    t.string   "location_name"
+    t.string   "name"
     t.float    "latitude"
     t.float    "longitude"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "posts", :force => true do |t|
