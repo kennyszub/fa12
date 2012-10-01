@@ -29,6 +29,9 @@ class AppQuery
   # Output: None
   def get_following_locations(user_id)
     @following_locations = []
+    User.find(user_id).locations.each do |x|
+      @following_locations.append({:id=>x.id, :name=>x.name, :latitude=>x.latitude, :longitude=>x.longitude})
+    end
   end
 
   # Purpose: Show the information and all posts for a given location
@@ -103,8 +106,8 @@ class AppQuery
       lat = x.latitude
       lon = x.longitude
       if @locations.length < 50
-        if lat >= swlat and lat <= nelat
-          if lon >= swlng and lon <= nelng
+        if lat >= swlat.to_f and lat <= nelat.to_f
+          if lon >= swlng.to_f and lon <= nelng.to_f
             follows = User.find(user_id).locations.exists?(x.id)
             @locations.append({:id=>x.id, :name=>x.name, :latitude=>lat, :longitude=>lon, :follows=>follows})
           end
@@ -213,6 +216,23 @@ class AppQuery
   # Output: None
   def get_all_posts
     @posts = []
+    Location.all.each do |loc|
+      loc_id = loc.id
+      loc_name = loc.name
+      loc_lat = loc.latitude
+      loc_long = loc.longitude
+      loc.posts.each do |post|
+        @posts.append({:author_id=>post.user.id,
+                       :author=>post.user.name,
+                       :text=>post.text,
+                       :created_at=>post.created_at,
+                       :location=> {:id=>loc_id,
+                                    :name=>loc_name,
+                                    :latitude=>loc_lat,
+                                    :longitude=>loc_long}
+                       })
+      end
+    end
   end
 
   # Purpose: Get all the users
@@ -227,6 +247,9 @@ class AppQuery
   # Output: None
   def get_all_users
     @users = []
+    User.all.each do |x|
+      @users.append({:id=>x.id, :name=>x.name, :email=>x.email})
+    end
   end
 
   # Purpose: Get all the locations
@@ -242,6 +265,9 @@ class AppQuery
   # Output: None
   def get_all_locations
     @locations = []
+    Location.all.each do |x|
+      @locations.append({:id=>x.id, :name=>x.name, :latitude=>x.latitude, :longitude=>x.longitude})
+    end
   end
 
   # Retrieve the top 5 users who created the most posts.

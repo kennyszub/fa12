@@ -216,6 +216,23 @@ class AppQuery
   # Output: None
   def get_all_posts
     @posts = []
+    Location.all.each do |loc|
+      loc_id = loc.id
+      loc_name = loc.name
+      loc_lat = loc.latitude
+      loc_long = loc.longitude
+      loc.posts.each do |post|
+        @posts.append({:author_id=>post.user.id,
+                       :author=>post.user.name,
+                       :text=>post.text,
+                       :created_at=>post.created_at,
+                       :location=> {:id=>loc_id,
+                                    :name=>loc_name,
+                                    :latitude=>loc_lat,
+                                    :longitude=>loc_long}
+                       })
+      end
+    end
   end
 
   # Purpose: Get all the users
