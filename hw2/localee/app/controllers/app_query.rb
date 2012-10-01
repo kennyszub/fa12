@@ -88,6 +88,23 @@ class AppQuery
   # Output: None
   def get_stream_for_user(user_id)
     @posts = []
+    user = User.find(user_id)
+    # get followed locations
+    user_locations = user.locations
+    user_locations.each do |loc|
+      loc.posts.each do |post|
+        @posts.append({:author_id=>user_id,
+                      :author=>user.name,
+                      :text=>post.text,
+                      :created_at=>post.created_at,
+                      :location=>{:id=>loc.id,
+                                  :name=>loc.name,
+                                  :latitude=>loc.latitude,
+                                  :longitude=>loc.longitude}
+                      })
+      end
+    end
+    @posts = @posts.sort_by{|h| h[:created_at]}.reverse
   end
 
   # Purpose: Retrieve the locations within a GPS bounding box
