@@ -2683,3 +2683,20 @@ Processing by AppController#nearby_locations_index as */*
   [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
   [1m[35mLocation Exists (0.5ms)[0m  SELECT 1 AS one FROM "locations" INNER JOIN "locations_users" ON "locations"."id" = "locations_users"."location_id" WHERE "locations_users"."user_id" = 1 AND "locations"."id" = 1 LIMIT 1
 Completed 200 OK in 25ms (Views: 1.0ms | ActiveRecord: 0.7ms)
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateUsers (20120905195452)
+Migrating to CreateLocations (20120929012028)
+Migrating to CreatePosts (20120929012041)
+Migrating to LocationsUsers (20121001033249)
+  [1m[35m (0.4ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("locations")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("locations_users")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("posts")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("users")[0m
+Connecting to database specified by database.yml

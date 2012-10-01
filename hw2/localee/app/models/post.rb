@@ -4,5 +4,5 @@ class Post < ActiveRecord::Base
   belongs_to :location #, :inverse_of => :posts
 
   #validations
-  validates :body, :presence => true
+  validates :text, :presence => true
 end
