@@ -17,13 +17,13 @@ class User < ActiveRecord::Base
   ############################################
   has_many :posts #, :inverse_of => user
 
- # def to_hash
-  #  puts "to_hash happening now!"
-   # {
-    #  :id => self.id,
-     # :name => self.name,
-      #:email => self.email
-  #  }
-#  end
+  def to_hash
+    puts "to_hash happening now!"
+    {
+      :id => self.id,
+      :name => self.name,
+      :email => self.email
+    }
+  end
 
 end
