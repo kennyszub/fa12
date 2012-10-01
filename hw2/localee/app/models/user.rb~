@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   #  TODO: you may optionally add code here  #
   ############################################
   has_many :posts #, :inverse_of => user
+  has_many :locations
 
   def to_hash
     puts "to_hash happening now!"

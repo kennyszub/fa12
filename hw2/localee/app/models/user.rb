@@ -19,7 +19,6 @@ class User < ActiveRecord::Base
   has_many :locations
 
   def to_hash
-    puts "to_hash happening now!"
     {
       :id => self.id,
       :name => self.name,

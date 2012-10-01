@@ -128,8 +128,8 @@ class AppQuery
   #       we may call it multiple times to test your schema/models.
   #       Your schema/models/code should prevent corruption of the database.
   def follow_location(user_id, location_id)
-    user_var = User.find("user_id = ?", user_id)
-    user_var.locations << Location.find("location_id = ?", location_id)
+    user_var = User.find(user_id)
+    user_var.locations << Location.find(location_id)
   end
 
   # Purpose: The current user unfollows a location
