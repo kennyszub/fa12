@@ -29,6 +29,9 @@ class AppQuery
   # Output: None
   def get_following_locations(user_id)
     @following_locations = []
+    User.find(user_id).locations.each do |x|
+      @following_locations.append({:id=>x.id, :name=>x.name, :latitude=>x.latitude, :longitude=>x.longitude})
+    end
   end
 
   # Purpose: Show the information and all posts for a given location
@@ -227,6 +230,9 @@ class AppQuery
   # Output: None
   def get_all_users
     @users = []
+    User.all.each do |x|
+      @users.append({:id=>x.id, :name=>x.name, :email=>x.email})
+    end
   end
 
   # Purpose: Get all the locations
@@ -242,6 +248,9 @@ class AppQuery
   # Output: None
   def get_all_locations
     @locations = []
+    Location.all.each do |x|
+      @locations.append({:id=>x.id, :name=>x.name, :latitude=>x.latitude, :longitude=>x.longitude})
+    end
   end
 
   # Retrieve the top 5 users who created the most posts.
