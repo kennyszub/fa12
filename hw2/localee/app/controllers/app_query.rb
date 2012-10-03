@@ -169,7 +169,9 @@ class AppQuery
   #       Your schema/models/code should prevent corruption of the database.
   def follow_location(user_id, location_id)
     user_var = User.find(user_id)
-    user_var.locations << Location.find(location_id)
+    if not user_var.locations.exists?(:id=>location_id)
+      user_var.locations << Location.find(location_id)
+    end
   end
 
   # Purpose: The current user unfollows a location
@@ -333,7 +335,7 @@ class AppQuery
   #   * name - name of the user
   #   * num_locations - number of locations (has at least 2 posts) the user follows
   def top_users_locations_sql
-    "SELECT u.name, count(*) as num_locations 
+    "SELECT u.name, count(*) as num_locations
      FROM users u, locations_users l
      WHERE u.id=l.user_id AND l.location_id IN
           (SELECT loc.id
